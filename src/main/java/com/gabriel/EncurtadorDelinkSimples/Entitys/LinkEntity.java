@@ -30,4 +30,7 @@ public class LinkEntity {
     @Column(nullable = false)
     private LocalDateTime dateExpire;
 
+    @Column(nullable = false)
+    private Long click;
+
 }

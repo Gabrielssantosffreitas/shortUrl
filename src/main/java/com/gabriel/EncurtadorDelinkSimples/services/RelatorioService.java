@@ -37,6 +37,20 @@ public class RelatorioService {
                             .collect(Collectors.groupingBy(LinkEntity::getUrl)));
     }
 
+    public ResponseEntity<List<LinkEntity>> orderByDate (){
+        return  ResponseEntity.ok().body(
+                getLinksNotExpired().stream()
+                        .sorted(Comparator.comparing(LinkEntity::getCreatedDate))
+                        .toList()
+        );
+    }
+
+    public  ResponseEntity<List<LinkEntity>> orderByClick (){
+        return ResponseEntity.ok().body(
+                getLinksNotExpired().stream()
+                        .sorted(Comparator.comparing(LinkEntity::getClick))
+                        .toList());
+    }
     private List<LinkEntity> getLinksNotExpired () {
 
         repository
