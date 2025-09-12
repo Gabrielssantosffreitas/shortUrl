@@ -1,17 +1,26 @@
 package com.gabriel.EncurtadorDelinkSimples.services;
-
 import com.gabriel.EncurtadorDelinkSimples.Entitys.LinkEntity;
 import com.gabriel.EncurtadorDelinkSimples.repositorys.LinksRepository;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+
+/*
+    Observação importante:
+    Eu sei que poderia resolver a maior parte dessas operações diretamente com queries no Spring Data JPA,
+    inclusive de forma mais performática. No entanto, optei por implementar com programação funcional usando
+    Stream API do Java de propósito, para treinar esse recurso e também deixar explícito no código que sei
+    aplicá-lo em cenários reais.
+
+    Essa escolha foi intencional porque este projeto será usado no meu portfólio, e quero mostrar não apenas
+    meu conhecimento em JPA, mas também minha capacidade de trabalhar com coleções e manipulação funcional
+    em Java.
+*/
 
 @Service
 public class RelatorioService {
@@ -51,6 +60,14 @@ public class RelatorioService {
                         .sorted(Comparator.comparing(LinkEntity::getClick))
                         .toList());
     }
+    public ResponseEntity<Map<LocalDateTime, Long>> groupByDateCountLink (){
+        return ResponseEntity.ok().body( getLinksNotExpired().stream()
+                .collect(
+                        Collectors.groupingBy(LinkEntity::getCreatedDate,
+                                Collectors.counting())
+                ));
+    }
+
     private List<LinkEntity> getLinksNotExpired () {
 
         repository
