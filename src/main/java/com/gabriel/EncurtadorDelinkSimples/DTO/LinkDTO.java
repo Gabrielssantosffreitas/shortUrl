@@ -8,6 +8,8 @@ public record LinkDTO(
         @URL(message = " is not url")
         String url,
         @NotBlank
-        String shortUrl
+        String shortUrl,
+        @NotBlank
+        int AtivadoDesativado
 ){
 }

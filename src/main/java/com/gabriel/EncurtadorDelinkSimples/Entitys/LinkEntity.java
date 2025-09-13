@@ -1,5 +1,6 @@
 package com.gabriel.EncurtadorDelinkSimples.Entitys;
 
+import com.gabriel.EncurtadorDelinkSimples.enums.EstateAtivoDesetivado;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,8 +30,11 @@ public class LinkEntity {
 
     @Column(nullable = false)
     private LocalDateTime dateExpire;
+    @Column(nullable = false)
+    private EstateAtivoDesetivado estate;
 
     @Column(nullable = false)
     private Long click;
+
 
 }

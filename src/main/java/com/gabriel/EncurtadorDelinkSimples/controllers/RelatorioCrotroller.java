@@ -19,6 +19,7 @@ public class RelatorioCrotroller {
     public RelatorioCrotroller(RelatorioService service) {
         this.service = service;
     }
+
     @GetMapping("/all")
     public ResponseEntity<List<LinkEntity>> allDataLinks (){
         return  service.allDataLinks();
