@@ -1,5 +1,6 @@
 package com.gabriel.EncurtadorDelinkSimples.services;
 import com.gabriel.EncurtadorDelinkSimples.Entitys.LinkEntity;
+import com.gabriel.EncurtadorDelinkSimples.enums.EstateAtivoDesetivado;
 import com.gabriel.EncurtadorDelinkSimples.repositorys.LinksRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,13 @@ public class RelatorioService {
                         Collectors.groupingBy(LinkEntity::getCreatedDate,
                                 Collectors.counting())
                 ));
+    }
+    // eu sei que nao e bom usar o .stream().parallel() pois o cuto de saparar em Threds a maior que o de fazer isso, porem e para testar como ele se conporta
+    public ResponseEntity<Map<EstateAtivoDesetivado, List<LinkEntity>>> groupByState(){
+         return  ResponseEntity.ok().body(getLinksNotExpired()
+                .stream()
+                .parallel()
+                .collect(Collectors.groupingBy(LinkEntity::getEstate)));
     }
 
     private List<LinkEntity> getLinksNotExpired () {

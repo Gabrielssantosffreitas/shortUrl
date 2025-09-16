@@ -5,7 +5,7 @@ import com.gabriel.EncurtadorDelinkSimples.Entitys.LinkEntity;
 import com.gabriel.EncurtadorDelinkSimples.services.LinkCreatorService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/")
 public class LinkCreatorController {
