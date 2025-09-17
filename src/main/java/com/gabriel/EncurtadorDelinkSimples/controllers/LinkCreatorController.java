@@ -3,6 +3,7 @@ package com.gabriel.EncurtadorDelinkSimples.controllers;
 import com.gabriel.EncurtadorDelinkSimples.DTO.LinkDTO;
 import com.gabriel.EncurtadorDelinkSimples.Entitys.LinkEntity;
 import com.gabriel.EncurtadorDelinkSimples.services.LinkCreatorService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
@@ -16,7 +17,7 @@ public class LinkCreatorController {
         this.service = service;
     }
 
-    @PostMapping("/created")
+    @PostMapping(value = "/created",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<LinkEntity> createdLink (@RequestBody LinkDTO link) {return service.created(link);}
 
 
