@@ -24,7 +24,7 @@ public class RelatorioIAService {
     public ResponseEntity<String> relatorio () {
 
         HttpResponse<String> response = connetApiHttpComponent.ConnetHttp(repository.findAll().toString());
-        return ResponseEntity.ok().body(response.body().);
+        return ResponseEntity.ok().body(response.body());
     }
 
 
