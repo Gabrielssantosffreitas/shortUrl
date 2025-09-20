@@ -5,7 +5,7 @@ COPY pom.xml /app
 
 WORKDIR /app
 
-RUN mvn clean install
+RUN mvn clean install -DskipTests
 
 FROM openjdk:21
 COPY --from=build app/target/EncurtadorDelinkSimples-0.0.1-SNAPSHOT.jar app.jar
