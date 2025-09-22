@@ -1,9 +1,12 @@
 package com.gabriel.EncurtadorDelinkSimples.DTO;
 
+import com.google.gson.annotations.SerializedName;
+
 // Record para o Candidato
     public record Candidate(
-            Content content,
-            String role,
-            String finishReason,
-            double avgLogprobs
-    ) {}
+
+        @SerializedName("content_data") Content content,
+        @SerializedName("role_name") String role,
+        @SerializedName("finish_reason") String finishReason,
+        @SerializedName("average_logprobs") double avgLogprobs
+) {}
